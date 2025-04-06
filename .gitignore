@@ -1,0 +1,15 @@
+# Unity generated files
+.vs/
+.idea/
+.gradle/
+.vscode/
+Library/
+Temp/
+Obj/
+Build/
+BuildTarget/
+UserSettings/
+
+# User-specific files
+*.userprefs
+
