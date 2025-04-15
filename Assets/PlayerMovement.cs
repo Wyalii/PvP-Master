@@ -5,8 +5,9 @@ public class PlayerMovement : MonoBehaviour
 {
     private PhotonView photonView;
     private Rigidbody2D rb;
+    private Animator animator;
     public float moveSpeed = 5f;
-    public float jumpForce = 10f;
+    public float jumpForce = 6f;
     public float jumpCooldown = 0.5f;
     private float lastJumpTime;
     private bool isGrounded = true;
@@ -15,6 +16,15 @@ public class PlayerMovement : MonoBehaviour
     {
         photonView = GetComponent<PhotonView>();
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        if (photonView.IsMine)
+        {
+            CameraFollow camFollow = Camera.main.GetComponent<CameraFollow>();
+            if (camFollow != null)
+            {
+                camFollow.target = this.transform;
+            }
+        }
     }
 
     void Update()
@@ -23,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
 
         float moveX = Input.GetAxisRaw("Horizontal");
         rb.linearVelocity = new Vector2(moveX * moveSpeed, rb.linearVelocity.y);
+        animator.SetBool("isMoving", Mathf.Abs(moveX) > 0.1f);
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded && Time.time > lastJumpTime + jumpCooldown)
         {

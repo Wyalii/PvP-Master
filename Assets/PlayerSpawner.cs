@@ -16,7 +16,7 @@ public class PlayerSpawner : MonoBehaviour
 
             Vector3 spawnPosition = spawnPoints[spawnIndex].position;
 
-            PhotonNetwork.Instantiate("Player", spawnPosition, Quaternion.identity);
+            PhotonNetwork.Instantiate("Characters/Death", spawnPosition, Quaternion.identity);
         }
     }
 }
