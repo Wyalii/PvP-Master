@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private PlayerCombat combat;
     public float moveSpeed = 5f;
     public float jumpForce = 6f;
-    public float jumpCooldown = 0.5f;
+    public float jumpCooldown = 1f;
     private float lastJumpTime;
     private bool isGrounded = true;
 
